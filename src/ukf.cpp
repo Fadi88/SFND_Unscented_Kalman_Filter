@@ -22,7 +22,7 @@ UKF::UKF()
   P_ = MatrixXd(5, 5);
 
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 1.0;
+  std_a_ = 0.8;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
   std_yawdd_ = 0.5;
@@ -74,8 +74,8 @@ UKF::UKF()
   P_(0, 0) = 0.1;
   P_(1, 1) = 0.1;
   P_(2, 2) = 1;
-  P_(3, 3) = 1;
-  P_(4, 4) = 1;
+  P_(3, 3) = std_laspx_*std_laspx_;
+  P_(4, 4) = std_laspy_*std_laspy_;
 
   for (int i = 0; i < 2 * n_aug_ + 1; i++)
   {
